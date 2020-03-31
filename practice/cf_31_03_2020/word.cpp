@@ -34,6 +34,28 @@ int main()
 {
 	test()
 	{
+        ll n, k;
+        cin >> n >> k;
+        string s;
+        cin >> s;
+        ll nos = n/k;
+        ll arr[nos];
+        For(i,nos)
+        {
+            arr[i] = 0;
+        }
+        For(i,nos)
+        {
+            For(j,k/2)
+            {
+                if(s[i*k+j] == s[(i+1)*k-(j+1)])
+                {
+                    arr[i]++;
+                }
+            }
+        }
+        ll index = max_element(arr, arr + nos) - arr;
+        cout << index << endl;
 
 	}
 
