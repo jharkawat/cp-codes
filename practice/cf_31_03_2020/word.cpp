@@ -38,6 +38,7 @@ int main()
         cin >> n >> k;
         string s;
         cin >> s;
+        ll count = 0;
         ll nos = n/k;
         ll arr[nos];
         For(i,nos)
@@ -55,7 +56,27 @@ int main()
             }
         }
         ll index = max_element(arr, arr + nos) - arr;
-        cout << index << endl;
+        for(i = k*index;i<k*(index+1);i++)
+        {
+            ll col;
+            for(j=0; j<nos; j++)
+            {
+                string temp, temp1;
+                temp[j] = s[j*k];
+                temp1[j] = s[(j+1)*k];
+            }
+            ll ch1[26], ch2[26];
+            for(k = 0; k<nos; k++)
+            {
+                ch1[temp[k]-97]++;
+                ch2[temp1[k]-97]++;
+            }
+            ll max1 = max_element(ch1, ch1 + 26) - ch1;
+            ll max2 = max_element(ch2, ch2 + 26) - ch2;
+            if(max1 >= 2 )
+
+        }
+
 
 	}
 
