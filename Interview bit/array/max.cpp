@@ -50,3 +50,88 @@ typedef pair< long long int ,long long int > iil;
 #define ll long long int
 #define ff first
 #define ss second
+
+vector<int> maxset(vector<int> &A) 
+{
+    vector<tuple<int, int, int> > vec;
+    vi fin;
+    ll sum = -1;
+    ll max = 0;
+    ll fst = -1;
+    ll end;
+    for(ll i = 0 ; i<A.size(); i++)
+    {
+        if(A[i] < 0)
+        {
+            fst = -1;
+            sum = -1;
+        }
+        if((fst = -1) && (A[i]>0))
+        {
+            fst = i;
+            sum = 0;
+        }
+        if(sum != -1)
+        {
+            sum += A[i];
+        }
+        if(max <= sum)
+        {
+            if(sum > max)
+            {
+                vec.erase(vec.begin(), vec.end());
+            }
+            max = sum;
+            end = i;
+            vec.pb(make_tuple(fst,end,(end-fst+1)));
+        }
+    }
+    vector<int > sub;
+    int start;
+    if(vec.size() > 1)
+    {
+        int max = get<2>(vec[0]);
+        int j = 0;
+        for(int i=0; i<vec.size(); i++)
+        {
+            if(max <= get<2>(vec[i]))
+            {
+                if(max < get<2>(vec[i]))
+                {
+                    sub.erase(sub.begin(),sub.end());
+                }
+                sub.pb(i);
+            }
+        }
+        if(sub.size()>1)
+        {
+            int start = get<0>(vec[sub[0]]);
+            for(int i=0; i<sub.size(); i++)
+            {
+                if(start > get<0>(vec[sub[i]]));
+                {
+                    start = sub[i];
+                }
+            }
+        }
+        else 
+        {
+            start = sub[0];
+        }
+    }
+    for(int i = get<0>(vec[start]); i<=(get<1>(vec[start])); i++)
+    {
+        fin.pb(A[i]);
+    }
+    return fin;
+}
+
+int main()
+{
+	vi vec = {1,2,5,-7,2,5};
+    vi fin = maxset(vec);
+    for(int i = 0 ; i<fin.size(); i++)
+    {
+        cout << fin[i] << endl;
+    }
+}

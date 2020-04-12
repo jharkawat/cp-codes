@@ -31,22 +31,43 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 
 #define fastio ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 #define test() int t;cin>>t;while(t--)
+#define ll long long
 #define For(_i , N) for(int _i = 0 ;_i < N ; _i ++)
 #define ForR(_i , N) for(int _i = N ;_i > 0 ; _i --)
 #define ForI(_i , a , N) for(int _i = a ;_i < N ; _i ++)
 #define ForIR(_i , a , N) for(int _i = N ;_i > a ; _i --)
 #define INF (2139062143)
 
-typedef vector< int > vi;
-typedef vector< vi > vvi;
-typedef pair< int,int > ii;
-typedef pair< long long int ,long long int > iil;
- 
-#define pb push_back
-#define all(c) (c).begin(),(c).end()
-#define tr(c,i) for( auto i = (c).begin(); i != (c).end(); i++)
- 
-#define edl '\n'
-#define ll long long int
-#define ff first
-#define ss second
+
+int maxArr(vector<int> &A) 
+{
+    int max = 0;
+    int sum = 0;
+    for(int i = 0; i<A.size(); i++)
+    {
+        for(int j = i; j<A.size(); j++)
+        {
+            sum = abs(A[i] - A[j]) + abs(i - j);
+            debug(i,j);
+            debug(sum);
+            if(max < sum)
+            {
+                max = sum;
+                debug(max);
+
+            }
+
+        }
+    }
+    return max  ; 
+}
+
+
+int main()
+{
+    vector<int > vec = {1,3,-1};
+    int sum= maxArr(vec);
+    cout << sum << endl;
+
+
+}

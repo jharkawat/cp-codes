@@ -31,22 +31,43 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 
 #define fastio ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 #define test() int t;cin>>t;while(t--)
+#define ll long long
 #define For(_i , N) for(int _i = 0 ;_i < N ; _i ++)
 #define ForR(_i , N) for(int _i = N ;_i > 0 ; _i --)
 #define ForI(_i , a , N) for(int _i = a ;_i < N ; _i ++)
 #define ForIR(_i , a , N) for(int _i = N ;_i > a ; _i --)
 #define INF (2139062143)
 
-typedef vector< int > vi;
-typedef vector< vi > vvi;
-typedef pair< int,int > ii;
-typedef pair< long long int ,long long int > iil;
- 
-#define pb push_back
-#define all(c) (c).begin(),(c).end()
-#define tr(c,i) for( auto i = (c).begin(); i != (c).end(); i++)
- 
-#define edl '\n'
-#define ll long long int
-#define ff first
-#define ss second
+int isPrime(int A) 
+{
+    int flag = 1;
+    for(int i=2; i<=sqrt(A); i++)
+    {
+        if(A%i == 0)
+        {
+            flag = 0;
+        }
+    }
+    return flag;
+}
+
+
+int main()
+{
+    int A = 10;
+    vector<int > arr;
+    for(int i = 2; i<=A; i++)
+    {
+        if(isPrime(i))
+        {
+            arr.push_back(i);
+            //debug(i);
+        }
+    }
+    for(int j=0; j<arr.size(); j++)
+    {
+        cout << "arr" << arr[j] << endl;
+    }
+    return 0;
+
+}
