@@ -51,22 +51,6 @@ typedef pair< long long int ,long long int > iil;
 #define ff first
 #define ss second
 
-typedef vector<int > vi;
-typedef vector< vi > vvi;
-typedef pair< int,int > ii;
-typedef pair< long long int ,long long int > iil;
-
-#define For(_i , N) for(int _i = 0 ;_i < N ; _i ++) 
-#define ForI(_i , a , N) for(int _i = a ;_i < N ; _i ++)
-#define pb push_back
-#define all(c) (c).begin(),(c).end()
-#define tr(c,i) for( auto i = (c).begin(); i != (c).end(); i++)
- 
-#define edl '\n'
-#define ll long long int
-#define ff first
-#define ss second
-
 ll value_r(vi b, ll start, ll end, ll act_val)
 {
     ll rsv = 0;
@@ -118,13 +102,11 @@ int maxSpecialProduct(vector<int> &A)
     
 }
 
-
-
 int main()
 {
-    vector<int > vec = { 5, 9, 6, 8, 6, 4, 6, 9, 5, 4, 9};
-    int m = maxSpecialProduct(vec);
-    cout << "return value : " << m << endl;
+    // vector<int > vec = { 5, 9, 6, 8, 6, 4, 6, 9, 5, 4, 9};
+    // int m = maxSpecialProduct(vec);
+    // cout << "return value : " << m << endl;
     // cout << vec.size() << endl;
     // for(int i = 0; i< vec.size() ; i++)
     // {
@@ -132,5 +114,14 @@ int main()
 
     // } 
     // cout << endl;
+
+    vector<string > v = {"3", "31", "34", "5", "9"};
+    cout << v[1][4]<< endl;
+    sort(v.begin(), v.end(),greater<string>());
+    for(int i = 0; i< v.size() ; i++)
+    {
+        cout << v[i] << " " ;
+
+    }    
     return 0;
 }
