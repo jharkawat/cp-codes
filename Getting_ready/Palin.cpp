@@ -1,4 +1,4 @@
- #include<bits/stdc++.h>
+#include<bits/stdc++.h>
 
 using namespace std;
 
@@ -40,6 +40,16 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 
 int main()
 {
+    bool ispalindrome(string str)
+    {
+        int m = str.size();
+        for(int i = 0; i<m/2; i++)
+        {
+            if(str[i] != str[m-i-1])
+            return false;
+        }
+        return true;
+    }
 	test()
 	{     
         string p;
@@ -47,6 +57,31 @@ int main()
         int size = p.size();
         p[1] = p[1] + 2;
         cout << p << endl;
+        int count = 1;
+        if(ispalindrome(p))
+        {
+            if(m%2 != 0)
+            {
+                p[m/2] = p[m/2] + 1;
+            }
+            else 
+            {
+                p[m/2] = p[m/2] + 1;
+                p[(m/2) - 1] = p[(m/2) - 1] + 1;
+            }
+        }
+        else
+        {
+            for(int i = m/2; i>0 ; i--)
+            {
+                if((s[i-1] != s[m-i]) && count)
+                {
+
+                }
+            }
+        }
+        
+
 
 
 	}
