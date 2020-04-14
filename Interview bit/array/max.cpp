@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include<bits/stdc++.h>
 
 using namespace std;
@@ -136,7 +135,6 @@ int main()
         cout << fin[i] << endl;
     }
 }
-=======
 int Solution::maxArr(vector<int> &A) 
 {
     vector<int > A1, A2;
@@ -160,4 +158,3 @@ int Solution::maxArr(vector<int> &A)
 
     return max3;
 }
->>>>>>> fa918a5c833f3d7dd9725c943b7291291c6a6d73
