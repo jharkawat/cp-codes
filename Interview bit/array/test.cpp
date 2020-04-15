@@ -51,77 +51,109 @@ typedef pair< long long int ,long long int > iil;
 #define ff first
 #define ss second
 
-ll value_r(vi b, ll start, ll end, ll act_val)
+vector<int> subUnsort(vector<int> &A) 
 {
-    ll rsv = 0;
-    for(ll i = start; i<end; i++)
+    vector<int > fin = {-1};
+    int small = -1; 
+    int large = -1;
+    int stag = 1;
+    int flag = 1;
+    int i=0;
+    int j= A.size()-1;
+    int total = A.size();
+    for(int k = 0; k<A.size(); k++)
     {
-        if((ll)b[i] > act_val)
+        if(A[i]>A[i+1] && (i<A.size()-2) && stag)
         {
-            rsv = i;
-            break;
+            small = A[i+1];
+            i++;
+            stag = 0;
+        }
+        else if(stag)
+        {
+            i++;
+        }
+        if((A[j]<A[j-1]) && (j>0) && flag)
+        {
+            large = A[j-1];
+            j--;
+            flag = 0;
+        }
+        else if(flag)
+        {
+            j--;
+        }
+        if((small != -1) && i<A.size()-1)
+        {
+            //debug(small, A[i]);
+            if(small > A[i])
+            {
+                small = A[i];
+            }
+            //debug(small);
+            i++;
+        }
+        if((large != -1) && j>-1)
+        {
+            //debug(large);
+            large = max(large, A[j]);
+            j--;
+        }
+        
+    }
+    //debug(small,large);
+    if(small == -1)
+    {
+        return fin;
+    }
+    else
+    {
+        stag = 1;
+        flag = 1;
+        i = 0;
+        j = A.size()-1;
+        while(stag || flag)
+        {
+            if((A[i] > small) && stag)
+            {
+                //debug(i);
+                stag = 0;
+            }
+            else if(stag)
+            {
+                i++;
+            }
+            if((A[j] < large) && flag)
+            {
+                //debug(j);
+                flag = 0;
+            }
+            else if(flag)
+            {
+                j--;
+            }
         }
     }
-//    debug(rsv);
-    return rsv;
-}
-
-ll value_l(vi b, ll start, ll end, ll act_val)
-{
-    ll rsv = 0;
-    for(ll i = end; i>=start; i--)
-    {
-        if((ll)b[i] > act_val)
-        {
-            rsv = i;
-            break;
-        }
-    }
-//    debug(rsv);
-    return rsv;
-}
-
-int maxSpecialProduct(vector<int> &A) 
-{
-//    cout << "in max" << endl;
-    ll max = 0;
-    ll prod = 0;
-    for(int i; i<A.size(); i++)
-    {
-//        cout << "in max for" << endl;
-        ll left = value_l( A, 0, i, (ll)A[i]);
-        ll right = value_r(A, i, A.size(), (ll)A[i]);        
-        prod = left*right;
-//        debug(left,right,prod);
-        if(prod>max)
-        {
-            max = prod;
-        }
-    }
-    return max;
+    fin.erase(fin.begin() + 0);
+    fin.pb(i);
+    fin.pb(j);
+    return fin;
     
 }
 
-int main()
-{
-    // vector<int > vec = { 5, 9, 6, 8, 6, 4, 6, 9, 5, 4, 9};
-    // int m = maxSpecialProduct(vec);
-    // cout << "return value : " << m << endl;
-    // cout << vec.size() << endl;
-    // for(int i = 0; i< vec.size() ; i++)
-    // {
-    //     cout << vec[i] << " " ;
 
-    // } 
-    // cout << endl;
+// Driver Program 
+int main() 
+{ 
+	// read only array, not to be modified 
+	vector<int >arr = {  1, 1, 2, 3, 3, 4, 8, 9, 11, 9, 11, 12, 12, 11, 9, 14, 19, 20, 20 }; 
 
-    vector<string > v = {"3", "31", "34", "5", "9"};
-    cout << v[1][4]<< endl;
-    sort(v.begin(), v.end(),greater<string>());
-    for(int i = 0; i< v.size() ; i++)
+    vector<int > ar;
+    ar = subUnsort(arr);
+
+    for(int i=0; i<ar.size(); i++)
     {
-        cout << v[i] << " " ;
-
-    }    
-    return 0;
-}
+        cout << ar[i] << endl;
+    }
+    
+} 
