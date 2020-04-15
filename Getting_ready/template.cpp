@@ -31,6 +31,7 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 
 #define fastio ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 #define test() int t;cin>>t;while(t--)
+#define ll long long
 #define For(_i , N) for(int _i = 0 ;_i < N ; _i ++)
 #define ForR(_i , N) for(int _i = N ;_i > 0 ; _i --)
 #define ForI(_i , a , N) for(int _i = a ;_i < N ; _i ++)
