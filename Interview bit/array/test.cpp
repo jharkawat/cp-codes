@@ -51,109 +51,60 @@ typedef pair< long long int ,long long int > iil;
 #define ff first
 #define ss second
 
-vector<int> subUnsort(vector<int> &A) 
-{
-    vector<int > fin = {-1};
-    int small = -1; 
-    int large = -1;
-    int stag = 1;
-    int flag = 1;
-    int i=0;
-    int j= A.size()-1;
-    int total = A.size();
-    for(int k = 0; k<A.size(); k++)
+void setss(vector<vector<int> > &A) {
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+
+    vector<pair<int,int>> pi;
+    int m = A.size();
+    int n = A[0].size();
+    debug(m,n);
+    vector<int> vec(n,0);
+    for(int i = 0; i<m; i++)
     {
-        if(A[i]>A[i+1] && (i<A.size()-2) && stag)
+        for(int j = 0; j<n; j++)
         {
-            small = A[i+1];
-            i++;
-            stag = 0;
-        }
-        else if(stag)
-        {
-            i++;
-        }
-        if((A[j]<A[j-1]) && (j>0) && flag)
-        {
-            large = A[j-1];
-            j--;
-            flag = 0;
-        }
-        else if(flag)
-        {
-            j--;
-        }
-        if((small != -1) && i<A.size()-1)
-        {
-            //debug(small, A[i]);
-            if(small > A[i])
+            if(A[i][j] == 0)
             {
-                small = A[i];
-            }
-            //debug(small);
-            i++;
-        }
-        if((large != -1) && j>-1)
-        {
-            //debug(large);
-            large = max(large, A[j]);
-            j--;
-        }
-        
-    }
-    //debug(small,large);
-    if(small == -1)
-    {
-        return fin;
-    }
-    else
-    {
-        stag = 1;
-        flag = 1;
-        i = 0;
-        j = A.size()-1;
-        while(stag || flag)
-        {
-            if((A[i] > small) && stag)
-            {
-                //debug(i);
-                stag = 0;
-            }
-            else if(stag)
-            {
-                i++;
-            }
-            if((A[j] < large) && flag)
-            {
-                //debug(j);
-                flag = 0;
-            }
-            else if(flag)
-            {
-                j--;
+                pi.push_back(make_pair(i,j));
+                debug(i,j);
             }
         }
     }
-    fin.erase(fin.begin() + 0);
-    fin.pb(i);
-    fin.pb(j);
-    return fin;
+    int run = pi.size();
+    debug(run);
+    for(int i = 0; i<run; i++)
+    {
+        debug(pi[i].first,pi[i].second);
+        for(int j = 0; j<n; j++)
+        {
+            A[pi[i].first][j] = 0;
+        }
+        for(int k = 0; k<m; k++)
+        {
+            A[k][pi[i].second] = 0;
+        }
+
+    }
+
+    for(int i = 0; i<m; i++)
+    {
+        for(int j = 0; j<n; j++)
+        {
+            cout << A[i][j] << " ";
+        }
+        cout << endl;
+    }
+
     
 }
 
-
-// Driver Program 
-int main() 
-{ 
-	// read only array, not to be modified 
-	vector<int >arr = {  1, 1, 2, 3, 3, 4, 8, 9, 11, 9, 11, 12, 12, 11, 9, 14, 19, 20, 20 }; 
-
-    vector<int > ar;
-    ar = subUnsort(arr);
-
-    for(int i=0; i<ar.size(); i++)
-    {
-        cout << ar[i] << endl;
-    }
+int main()
+{
     
-} 
+    vector<vector<int> > A ={{1,1,1,1},{1,1,1,1},{1,1,0,0}};
+    setss(A);
+    return 0;
+}
