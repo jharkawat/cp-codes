@@ -31,7 +31,7 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 
 #define fastio ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 #define test() int t;cin>>t;while(t--)
-#define For(_i , N) for(int _i = 0 ;_i < N ; _i ++)
+#define For(_i , N) for(long long int _i = 0 ;_i < N ; _i ++)
 #define ForR(_i , N) for(int _i = N ;_i > 0 ; _i --)
 #define ForI(_i , a , N) for(int _i = a ;_i < N ; _i ++)
 #define ForIR(_i , a , N) for(int _i = N ;_i > a ; _i --)
@@ -57,6 +57,45 @@ int main()
     cin >> t;
     For(i,t)
     {
-
+        string s;
+        cin >> s;
+        vector<ll> v;
+        v.pb(-1);
+        v.pb(-1);
+        v.pb(-1);
+        ll sum = INT_MAX;
+        ll flag = 1;
+        For(j,s.size())
+        {
+            if(s[j] == '1')
+            {
+                v[0] = j;
+            }
+            else if(s[j] == '2')
+            {
+                v[1] = j;
+            }
+            else if(s[j] == '3')
+            {
+                v[2] = j;
+            }
+            if((v[0] != -1) && (v[1] != -1) && (v[2] != -1))
+            {
+                ll ma = max(v[0],max(v[1],v[2]));
+                ll mi = min(v[0],min(v[1],v[2]));
+                ll temp = ma-mi+1;
+                sum = min(sum,temp);
+                flag = 0;
+            }
+        }
+        if(flag)
+        {
+            cout << '0' << endl;
+        }
+        else
+        {
+            cout << sum << endl;
+        }
+        
     }
 }

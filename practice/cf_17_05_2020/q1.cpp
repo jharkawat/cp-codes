@@ -57,6 +57,31 @@ int main()
     cin >> t;
     For(i,t)
     {
-
+        ll a,b,c,d;
+        cin >> a >> b >> c >> d;
+        if(b>=a)
+        {
+            cout << b << endl;
+        }
+        else if(a > b && d >= c)
+        {
+            cout << "-1" << endl;
+        }
+        else if(a > b && d < c)
+        {
+            ll p = a-b;
+            ll q = c - d;
+            if(p%q == 0)
+            {
+                ll ans = b + (p/q)*c;
+                cout << ans << endl;
+            }
+            else
+            {
+                ll ans = b + ((p/q) + 1)*c;
+                cout << ans << endl;
+            }
+            
+        }
     }
 }

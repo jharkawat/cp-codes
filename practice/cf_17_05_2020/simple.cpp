@@ -57,6 +57,16 @@ int main()
     cin >> t;
     For(i,t)
     {
-
+        long double  a;
+        cin >> a;
+        long double ang = (long double)3.141592654/(2.0*a);
+        long double ang2 = (90-(180-(180/a))/2)/2;
+        //debug(ang2);
+        long double len = (0.5/sin(ang))*cos((3.141592654*ang2)/180);
+        long double side = len * cos(ang);
+        long double ans = 2.0*len;
+        //debug(ang, len, side, sin(ang));
+        cout << setprecision(8) << fixed;
+        cout << ans << endl;
     }
 }
