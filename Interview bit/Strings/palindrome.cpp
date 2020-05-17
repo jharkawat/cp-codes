@@ -10,7 +10,7 @@ int Solution::isPalindrome(string A)
             {
                 s.push_back(A[i]-32);
             }
-            else
+            else    
             {
                 s.push_back(A[i]);
             }
