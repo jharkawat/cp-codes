@@ -53,10 +53,28 @@ typedef pair< long long int ,long long int > iil;
 
 int main()
 {
-    ll t;
-    cin >> t;
-    For(i,t)
+    ll n,m;
+    cin >> n >> m;
+    map<string, string> mpp;
+    map<string, string>::iterator it ;
+    For(i,m)
+    {   
+        string str1,str2;
+        cin >> str1 >> str2;
+        if(str1.size() > str2.size())
+        {
+            mpp[str1] = str2;
+        }
+        else
+        {
+            mpp[str1] = str1;
+        }
+    }
+    For(i,n)
     {
-
+        string temp;
+        cin >> temp;
+        it=mpp.find(temp);
+        cout << it->second << " " ;
     }
 }

@@ -53,10 +53,13 @@ typedef pair< long long int ,long long int > iil;
 
 int main()
 {
-    ll t;
-    cin >> t;
-    For(i,t)
-    {
-
-    }
+    ll n,m;
+    cin >> n >> m;
+    ll t = n-m+1;
+    ll max = t*(t-1)/2;
+    ll p = n/m;
+    ll r = n%m;
+    ll min = m*(p*(p-1))/2;
+    min = min + r*p;
+    cout << min << " " << max << endl;
 }

@@ -53,10 +53,30 @@ typedef pair< long long int ,long long int > iil;
 
 int main()
 {
-    ll t;
-    cin >> t;
-    For(i,t)
+    ll n; 
+    cin >> n;
+    set<int> st; 
+    ll p, q;
+    cin >> p;
+    For(i,p)
     {
-
+        int t;
+        cin >> t;
+        st.insert(t);
     }
-}
+    cin >> q;
+    For(i,q)
+    {
+        int t;
+        cin >> t;
+        st.insert(t);
+    }
+    if(n == st.size())
+    {
+        cout << "I become the guy." << endl;
+    }
+    else
+    {
+        cout << "Oh, my keyboard!" << endl;
+    }
+}        

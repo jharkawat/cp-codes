@@ -23,7 +23,7 @@ void __print(const T &x) {int f = 0; cerr << '{'; for (auto &i: x) cerr << (f++ 
 void _print() {cerr << "]\n";}
 template <typename T, typename... V>
 void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v...);}
-#ifndef ONLINE_JUDGE    
+#ifndef ONLINE_JUDGE
 #define debug(x...) cerr << "[" << #x << "] = ["; _print(x)
 #else
 #define debug(x...)
@@ -57,6 +57,40 @@ int main()
     cin >> t;
     For(i,t)
     {
+        ll n, x, m;
+        cin >> n >> x >> m;
+        vector<ii> vec;
+        for(int j = 0; j<m; j++)
+        {
+            ll p, q;
+            cin >> p >> q;
+            ii my; 
+            my = make_pair(p,q);
+            vec.push_back(my);
+        }
+        ll up, low;
+        up = x;
+        low = x;
+        For(j,m)
+        {
+            if((low <= vec[j].first) && (up <= vec[j].second) && (up >= vec[j].first))
+            {
+                low = low;
+                up = vec[j].second;
+            } 
+            else if((low >= vec[j].first) && (up >= vec[j].second) && (low <= vec[j].second))
+            {
+                low = vec[j].first;
+                up = up;
+            }
+            else if((low >= vec[j].first) && (up <= vec[j].second))
+            {
+                low = vec[j].first;
+                up = vec[j].second;
+            }
+            
+        }
+        cout << (up-low +1) << endl;
 
     }
 }

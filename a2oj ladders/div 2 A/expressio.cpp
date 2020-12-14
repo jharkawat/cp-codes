@@ -53,10 +53,15 @@ typedef pair< long long int ,long long int > iil;
 
 int main()
 {
-    ll t;
-    cin >> t;
-    For(i,t)
-    {
+    int a,b,c;
+    cin >> a >> b >> c;
+    int mins = 0;
+    mins = max(mins, (a*b+c));
+    mins = max(mins, (a*b*c));
+    mins = max(mins, (a+b+c));
+    mins = max(mins, (a+b*c));
+    mins = max(mins, (a*(b+c)));
+    mins = max(mins, ((a+b)*c));
+    cout << mins << endl;
 
-    }
 }

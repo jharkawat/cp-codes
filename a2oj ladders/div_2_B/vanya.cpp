@@ -53,10 +53,20 @@ typedef pair< long long int ,long long int > iil;
 
 int main()
 {
-    ll t;
-    cin >> t;
-    For(i,t)
+    ll n,l;
+    cin >> n >> l;
+    vector<double> vec(n,0);
+    For(i,n)
     {
-
+        cin >> vec[i];
     }
+    sort(vec.begin(), vec.end());
+    double maxi = 0;
+    For(i,(n-1))
+    {
+        maxi = max(maxi,(vec[i+1]-vec[i]));
+    }
+    maxi = max(maxi,2*vec[0]);
+    maxi = max(maxi,2*(l-vec[n-1]));
+    cout << fixed << setprecision(9) << maxi/(2.000000000) << endl;
 }

@@ -51,12 +51,50 @@ typedef pair< long long int ,long long int > iil;
 #define ff first
 #define ss second
 
+vector<int> to_binary(int n, int dec)
+{
+    vector<int> vec(n,0);
+    int i = n-1;
+    while(dec)
+    {
+        vec[i] = dec%2;
+        dec = dec/2;
+        i--; 
+    }
+    return vec;
+}
 int main()
 {
-    ll t;
-    cin >> t;
-    For(i,t)
+    ll n,m,k;
+    cin >> n >> m >> k;
+    vector<vector<int >> mat;
+    For(i,m)
     {
-
+        int t;
+        cin >> t;
+        vector<int> temp;
+        temp=to_binary(n,t);
+        mat.push_back(temp);
     }
+    int t;
+    cin >> t;
+    vector<int> temp;
+    temp=to_binary(n,t);
+    int ans = 0;
+    for(int i=0; i<m; i++)
+    {
+        int count = 0;
+        for(int j=0; j<n; j++)
+        {
+            if(mat[i][j]!=temp[j])
+            {
+                count++;
+            }
+        }
+        if(count<=k)
+        {
+            ans++;
+        }
+    }
+    cout << ans << endl;
 }

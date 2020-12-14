@@ -53,10 +53,22 @@ typedef pair< long long int ,long long int > iil;
 
 int main()
 {
-    ll t;
-    cin >> t;
-    For(i,t)
+    ll n,m;
+    cin >> n >> m;
+    vector<int> vec;
+    for(int i=0; i<m; i++)
     {
-
+        int t; 
+        cin >> t;
+        vec.push_back(t);
     }
+    sort(vec.begin(), vec.end());
+    int mins = INT_MAX;
+    int j=0;
+    for(int i = n-1; i<m; i++)
+    {   
+        mins = min(mins,(vec[i]-vec[j]));
+        j++;
+    }
+    cout << mins << endl;
 }

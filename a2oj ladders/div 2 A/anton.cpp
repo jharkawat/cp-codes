@@ -53,10 +53,24 @@ typedef pair< long long int ,long long int > iil;
 
 int main()
 {
-    ll t;
-    cin >> t;
-    For(i,t)
+    char ch;
+    cin >> ch;
+    set<char> st;
+    for(int i=1; i<1000; i++)
     {
-
+        cin >> ch;
+        if(ch == '}')
+        {
+            break;
+        }
+        else if(ch == ' ' || ch == ',')
+        {
+            continue;
+        }
+        else
+        {
+            st.insert(ch);
+        }
     }
+    cout << st.size() << endl;
 }

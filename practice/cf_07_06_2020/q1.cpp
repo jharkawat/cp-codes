@@ -23,7 +23,7 @@ void __print(const T &x) {int f = 0; cerr << '{'; for (auto &i: x) cerr << (f++ 
 void _print() {cerr << "]\n";}
 template <typename T, typename... V>
 void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v...);}
-#ifndef ONLINE_JUDGE    
+#ifndef ONLINE_JUDGE
 #define debug(x...) cerr << "[" << #x << "] = ["; _print(x)
 #else
 #define debug(x...)
@@ -57,6 +57,45 @@ int main()
     cin >> t;
     For(i,t)
     {
+        int m, n;
+        cin >> n >> m;
+        vector<vector <int >> vec(n);
+        For(i,n)
+        {
+            vector<int > pus;
+            For(j,m)
+            {
+                int p;
+                cin >> p;
+                pus.pb(p);
+            }
+            vec.pb(pus);
+        }
+        int flag = 0;
+        For(i,n)
+        {
+            For(j,m)
+            {
+                if(vec[i][j] == 1)
+                {
+                    continue;
+                }
+                else
+                {
+                    flag++;
+                }
+                
+            }
+        }
+        if(flag%2)
+        {   
+            cout << "Ashish" << endl;
+        }
+        else
+        {
+            cout << "Vivek" << endl;
+        }
+        
 
     }
 }

@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 
+
 using namespace std;
 
 void __print(int x) {cerr << x;}
@@ -53,10 +54,31 @@ typedef pair< long long int ,long long int > iil;
 
 int main()
 {
-    ll t;
-    cin >> t;
-    For(i,t)
+    ll n,m;
+    cin >> n >> m;
+    vector<ll> vec;
+    For(i,m)
     {
-
+        ll t;
+        cin >> t;
+        vec.push_back(t);
     }
+    ll temp = 1;
+    ll ans = 0;
+    For(i,m)
+    {
+        if(vec[i] >= temp)
+        {
+            ans += (vec[i]-temp);
+            temp = vec[i];
+        }
+        else
+        {
+            ans += n-(temp-1);
+            temp =1;
+            ans += vec[i]-temp;
+            temp = vec[i];            
+        }        
+    }
+    cout << ans << endl;
 }

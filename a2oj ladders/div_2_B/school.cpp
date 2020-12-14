@@ -53,10 +53,21 @@ typedef pair< long long int ,long long int > iil;
 
 int main()
 {
-    ll t;
-    cin >> t;
-    For(i,t)
+    ll n,t;
+    cin >> n >>t;
+    string str;
+    cin >> str;
+    for(int j=0; j<t; j++)
     {
+        for(int i=0; i<str.size();i++)
+        {
+            if(str[i] == 'B' && str[i+1] == 'G')
+            {
+                swap(str[i], str[i+1]);
+                i++;
+            }
 
+        }
     }
+    cout << str << endl;
 }
