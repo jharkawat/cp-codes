@@ -54,11 +54,36 @@ typedef pair< long long int ,long long int > iil;
 int main()
 {
     ios_base::sync_with_stdio(false);
-    cin.tie(NULL);    
-    ll t;
+    cin.tie(NULL);        
+    long long int t;
     cin >> t;
     For(i,t)
     {
-
+        long long int n;
+        cin >> n;
+        vector<long long int> vec;
+        For(j,n)
+        {
+            long long int t;
+            cin >> t;
+            vec.push_back(t);
+        }
+        long long int k = n-1;
+        long long int p = n/2;
+        For(j,p)
+        {
+            cout << vec[j] << " " << vec[k] << " " ;
+            k--;
+        }
+        if(n%2 != 0)
+        {
+            cout << vec[k] << endl;
+        }
+        else
+        {
+            cout << endl;
+        }
+        
     }
+    return 0;
 }

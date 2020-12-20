@@ -31,7 +31,7 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 
 #define fastio ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 #define test() int t;cin>>t;while(t--)
-#define For(_i , N) for(int _i = 0 ;_i < N ; _i ++)
+#define For(_i , N) for(long long int _i = 0 ;_i < N ; _i ++)
 #define ForR(_i , N) for(int _i = N ;_i > 0 ; _i --)
 #define ForI(_i , a , N) for(int _i = a ;_i < N ; _i ++)
 #define ForIR(_i , a , N) for(int _i = N ;_i > a ; _i --)
@@ -51,14 +51,44 @@ typedef pair< long long int ,long long int > iil;
 #define ff first
 #define ss second
 
+bool isprime(ll n)
+{
+    double p = sqrt(n);
+    for(ll i=2; i<p; i++)
+    {
+        if(n%i==0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);    
+    unordered_set<ll> nos;
+    nos.insert(4);
+    for(ll i=3; i<1000000; i = i+2)
+    {
+        if(isprime(i))
+        {
+            long long p = i*i;
+            nos.insert(p);
+        }
+    }
     ll t;
     cin >> t;
     For(i,t)
     {
-
+        ll n;
+        cin >> n;
+        if(nos.find(n) == nos.end())
+        {
+            cout << "NO" << endl;            
+        }
+        else
+        {
+            cout << "YES" << endl;
+        }
     }
 }

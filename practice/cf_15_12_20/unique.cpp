@@ -59,6 +59,39 @@ int main()
     cin >> t;
     For(i,t)
     {
-
+        ll n;
+        cin >> n;
+        string ans;
+        int count = 0;
+        if(n==0)
+        {
+            cout << "0" << endl;
+        }
+        if(n>45)
+        {
+            cout << "-1" << endl;
+        }
+        else
+        {
+            while(n != 0)
+            {
+                if(n>(9-count))
+                {
+                    string s = to_string(9-count);
+                    ans = s+ ans;
+                    n = n-(9-count);
+                    count++;
+                }
+                else
+                {
+                    debug(ans);
+                    string s = to_string(n);
+                    ans = s+ans;
+                    n=0;
+                }
+                
+            }
+            cout << ans << endl;
+        }
     }
 }
