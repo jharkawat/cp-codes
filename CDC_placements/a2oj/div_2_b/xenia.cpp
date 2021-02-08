@@ -55,20 +55,28 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);    
-    ll t,n;
-    cin >> n >> t;
-    string s;
-    cin >> s;
-    for(int j=0; j<t; j++)
+    ll n,m;
+    cin >> n >> m;
+    //vector<int> task;
+    int p,q;
+    q=1;
+    ll count =0;
+    for(int i=0; i<m; i++)
     {
-        for(int i =1; i<n; i++)
+        cin>>p;
+        if(q<=p)
         {
-            if(s[i]=='G')
-            {
-                swap(s[i],s[i-1]);
-                i++;
-            }
+            count+=(p-q);
+            q=p;
         }
-    }    
-    cout << s << endl;
+        else
+        {
+            count+=(n-(q-p));
+            q=p;
+        }
+        //task.push_back(p);
+    }
+    cout << count << endl;
+
+
 }
