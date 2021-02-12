@@ -55,10 +55,22 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);    
-    ll t;
-    cin >> t;
-    while(t--)
+    double n,l;
+    cin >> n >> l;
+    vector<double> position;
+    for(int i=0; i<n; i++)
     {
-
+        double t;
+        cin >> t;
+        position.push_back(t);
     }
-}
+    sort(position.begin(), position.end());
+    double dis=0;
+    for(int i=0; i<n-1; i++)
+    {
+        dis = max(dis,(position[i+1]-position[i])/2); 
+    }
+    dis = max(dis,position[0]);
+    dis = max(dis,(l-position[n-1]));
+    cout << fixed <<setprecision(9) << dis << endl;
+ }

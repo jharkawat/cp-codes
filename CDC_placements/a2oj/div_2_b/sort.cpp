@@ -51,14 +51,24 @@ typedef pair< long long int ,long long int > iil;
 #define ff first
 #define ss second
 
+ll binary_search(ll start, ll end, &vector<ll> vec)
+{
+    ll mid = (end-start)/2 + start;
+    
+}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);    
-    ll t;
-    cin >> t;
-    while(t--)
+    ll n;
+    cin >> n;
+    vector<ll> vec;
+    for(ll i=0; i<n; i++)
     {
-
+        ll t;
+        cin >>t;
+        vec.push_back(t);
     }
+    
 }
