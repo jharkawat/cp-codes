@@ -51,10 +51,20 @@ typedef pair< long long int ,long long int > iil;
 #define ff first
 #define ss second
 
-ll binary_search(ll start, ll end, &vector<ll> vec)
+ll binary_search(ll start, ll end, vector<ll> &vec)
 {
     ll mid = (end-start)/2 + start;
-    
+    //debug(mid);
+    if((vec[mid]<vec[mid-1]) || (vec[mid]>vec[mid+1]))
+    {
+        return mid;
+    }
+    else
+    {
+        binary_search(start,mid-1,vec);
+        binary_search(mid+1,end,vec);
+    }
+    return -1;
 }
 
 int main()
@@ -70,5 +80,69 @@ int main()
         cin >>t;
         vec.push_back(t);
     }
-    
+    ll start = 0;
+    ll end = n-1;
+    if(n==2)
+    {
+        if(vec[0]>vec[1])
+        {
+            cout << "yes" << endl;
+            cout << "1 2" << endl;
+            return 0;
+        }
+        else
+        {
+            cout << "yes" << endl;
+            cout << "1 1" << endl;
+            return
+        }
+
+    }    
+    ll index=binary_search(start,end,vec);
+    if(index==-1)
+    {
+        cout << "yes" << endl;
+        cout << "1 1" << endl;
+    }
+    else
+    {
+        ll i = index, j=index;
+        ll flag1 = 1, flag2 = 1;
+        while(flag1 || flag2)
+        {
+            if((vec[i]<vec[i-1]) && (i!=0))
+            {
+                i--;
+            }
+            else
+            {
+                flag1=0;
+            }
+            if((vec[j]>vec[j+1]) && (j<n-1) && (j!=0))
+            {
+                j++;
+            }
+            else
+            {
+                flag2=0;
+            }
+        }
+        //debug(i,j);
+        for(int k =0; k<=(j-i)/2; k++)
+        {
+            swap(vec[i+k],vec[j-k]);
+        }
+        for(int k=0; k<n-1; k++)
+        {
+            if(vec[k]>vec[k+1])
+            {
+                cout << "no" << endl;
+                return 0;
+            }
+        }
+        cout << "yes" << endl;
+        //debug(i,j);
+        cout << (i+1) << " " << (j+1) << endl;
+        return 0;
+    }
 }
