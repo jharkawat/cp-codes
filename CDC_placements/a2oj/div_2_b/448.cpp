@@ -51,65 +51,47 @@ typedef pair< long long int ,long long int > iil;
 #define ff first
 #define ss second
 
+string dup(string s)
+{
+    sort(s.begin(), s.end());
+    int i=0;
+    int j=s.length();
+    while(i!=j)
+    {
+        if(s[i]==s[i+1])
+        {
+            s.erase(i+1,1);
+            j--;
+        }
+        else
+        {
+            i++;
+        }
+
+    }
+    return s;
+}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);    
-    ll t;
-    cin >> t;
-    vector<int> arr(t);
-    for(int i=0; i<t; i++)
+    string s,t;
+    cin >> s >> t;
+    string p,q;
+    p=dup(s);
+    q=dup(t);
+    if(p!=q && (s.length() == t.length()))
     {
-        cin >> arr[i];
-    }
-    if(t<3)
-    {
-        if(arr[0]>arr[1])
-        {
-            cout << "1" << endl;
-            return 0;
-        }
-        else
-        {
-            cout << "0" << endl;
-            return 0;
-        }
-    }
-    int count1=0; 
-    int count2=0;
-    if(((arr[0]>=arr[t-1]) && (arr[0]>=arr[1])) || ((arr[0]<=arr[t-1]) && (arr[0]<=arr[1])))
-    {
-        count1++;
-    }
-    if(((arr[t-1]>=arr[t-2]) && (arr[t-1]>=arr[0])) || ((arr[t-1]<=arr[t-2]) && (arr[t-1]<=arr[0])))
-    {
-        count2++;
-    }
-    int stag = 0;
-    //debug(count);
-    int loc = -1;
-    for(int i=1; i<t-1; i++)
-    {
-        if(((arr[i]>=arr[i-1]) && (arr[i]>=arr[i+1])) || ((arr[i]<=arr[i-1]) && (arr[i]<=arr[i+1])))
-        {
-            stag++;
-            loc = i;
-        }
-    }
-    if(stag==1 && count1 ==0 && count2 ==0)
-    {
-        cout << (t-loc) << endl;
-    }
-    else if(stag==0 && count1 ==1 && count2 ==0)
-    {
-        cout << (t-1) << endl;
-    }
-    else if(stag==0 && count1 ==0 && count2 ==1)
-    {
-        cout << "1" << endl;
+        cout << "need tree" << endl;
     }
     else
     {
-        cout << "-1" << endl;
+        if(s.length() == t.length())
+        {
+            cout << "array" << endl;
+        }
+(s.length() == t.length())
     }
+
 }

@@ -55,61 +55,39 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);    
-    ll t;
-    cin >> t;
-    vector<int> arr(t);
-    for(int i=0; i<t; i++)
+    ll n,s,t;
+    cin >> n >> s >> t;
+    vector<int> suff(n);
+    for(int i=0; i<n; i++)
     {
-        cin >> arr[i];
+        cin >> suff[i];
     }
-    if(t<3)
+    if(s==t)
     {
-        if(arr[0]>arr[1])
+        cout << "0" << endl;
+        return 0;
+    }
+    ll count = 1;
+    ll curr = suff[s-1];
+    while(1)
+    {
+        //debug(curr);
+        if(curr == s)
         {
-            cout << "1" << endl;
-            return 0;
+            count =-1;
+            break;
+        }
+        else if(curr == t)
+        {
+            break;
         }
         else
         {
-            cout << "0" << endl;
-            return 0;
+            count++;
+            curr = suff[curr-1];
         }
+
     }
-    int count1=0; 
-    int count2=0;
-    if(((arr[0]>=arr[t-1]) && (arr[0]>=arr[1])) || ((arr[0]<=arr[t-1]) && (arr[0]<=arr[1])))
-    {
-        count1++;
-    }
-    if(((arr[t-1]>=arr[t-2]) && (arr[t-1]>=arr[0])) || ((arr[t-1]<=arr[t-2]) && (arr[t-1]<=arr[0])))
-    {
-        count2++;
-    }
-    int stag = 0;
-    //debug(count);
-    int loc = -1;
-    for(int i=1; i<t-1; i++)
-    {
-        if(((arr[i]>=arr[i-1]) && (arr[i]>=arr[i+1])) || ((arr[i]<=arr[i-1]) && (arr[i]<=arr[i+1])))
-        {
-            stag++;
-            loc = i;
-        }
-    }
-    if(stag==1 && count1 ==0 && count2 ==0)
-    {
-        cout << (t-loc) << endl;
-    }
-    else if(stag==0 && count1 ==1 && count2 ==0)
-    {
-        cout << (t-1) << endl;
-    }
-    else if(stag==0 && count1 ==0 && count2 ==1)
-    {
-        cout << "1" << endl;
-    }
-    else
-    {
-        cout << "-1" << endl;
-    }
+    cout << count << endl;
+
 }

@@ -55,61 +55,28 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);    
-    ll t;
-    cin >> t;
-    vector<int> arr(t);
-    for(int i=0; i<t; i++)
+    ll n;
+    cin >> n;
+    vector<pair<ll,ll>> color(n);
+    map<ll,ll> check;
+    for(ll i=0; i<n; i++)
     {
-        cin >> arr[i];
+        cin >> color[i].first >> color[i].second ;
+        check[color[i].first]++; 
     }
-    if(t<3)
+    vector<pair<ll,ll>> ans(n,make_pair(n-1,n-1));
+    for(ll i=0; i<n; i++)
     {
-        if(arr[0]>arr[1])
-        {
-            cout << "1" << endl;
-            return 0;
-        }
-        else
-        {
-            cout << "0" << endl;
-            return 0;
-        }
+        ans[i].first = ans[i].first + check[color[i].second];
+        ans[i].second = ans[i].second - check[color[i].second];
     }
-    int count1=0; 
-    int count2=0;
-    if(((arr[0]>=arr[t-1]) && (arr[0]>=arr[1])) || ((arr[0]<=arr[t-1]) && (arr[0]<=arr[1])))
+    for( int i=0; i<n; i++)
     {
-        count1++;
+        cout << ans[i].first << " " << ans[i].second << endl;
     }
-    if(((arr[t-1]>=arr[t-2]) && (arr[t-1]>=arr[0])) || ((arr[t-1]<=arr[t-2]) && (arr[t-1]<=arr[0])))
-    {
-        count2++;
-    }
-    int stag = 0;
-    //debug(count);
-    int loc = -1;
-    for(int i=1; i<t-1; i++)
-    {
-        if(((arr[i]>=arr[i-1]) && (arr[i]>=arr[i+1])) || ((arr[i]<=arr[i-1]) && (arr[i]<=arr[i+1])))
-        {
-            stag++;
-            loc = i;
-        }
-    }
-    if(stag==1 && count1 ==0 && count2 ==0)
-    {
-        cout << (t-loc) << endl;
-    }
-    else if(stag==0 && count1 ==1 && count2 ==0)
-    {
-        cout << (t-1) << endl;
-    }
-    else if(stag==0 && count1 ==0 && count2 ==1)
-    {
-        cout << "1" << endl;
-    }
-    else
-    {
-        cout << "-1" << endl;
-    }
+    // for(auto i = ans.begin(); i!=ans.end(); i++)
+    // {
+    //     std::cout << *i << endl;
+    // }
+    
 }

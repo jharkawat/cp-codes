@@ -55,61 +55,61 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);    
-    ll t;
-    cin >> t;
-    vector<int> arr(t);
-    for(int i=0; i<t; i++)
+    ll n,m;
+    cin >> n>>m;
+    vector<vector<ll>> mat(n);
+    vector<vector<ll>> ans(n);
+    for(int i=0; i<n; i++)
     {
-        cin >> arr[i];
-    }
-    if(t<3)
-    {
-        if(arr[0]>arr[1])
+        for(int j=0; j<m; j++)
         {
-            cout << "1" << endl;
-            return 0;
-        }
-        else
-        {
-            cout << "0" << endl;
-            return 0;
+            ll t;
+            cin >> t;
+            mat[i].push_back(t);
         }
     }
-    int count1=0; 
-    int count2=0;
-    if(((arr[0]>=arr[t-1]) && (arr[0]>=arr[1])) || ((arr[0]<=arr[t-1]) && (arr[0]<=arr[1])))
+
+    for(int i=1; i<n-1; i++)
     {
-        count1++;
-    }
-    if(((arr[t-1]>=arr[t-2]) && (arr[t-1]>=arr[0])) || ((arr[t-1]<=arr[t-2]) && (arr[t-1]<=arr[0])))
-    {
-        count2++;
-    }
-    int stag = 0;
-    //debug(count);
-    int loc = -1;
-    for(int i=1; i<t-1; i++)
-    {
-        if(((arr[i]>=arr[i-1]) && (arr[i]>=arr[i+1])) || ((arr[i]<=arr[i-1]) && (arr[i]<=arr[i+1])))
+        for(int j=1; j<m-1; j++)
         {
-            stag++;
-            loc = i;
+            if(mat[i][j]==1)
+            {
+                if(mat[i][j+1] ==0 && mat[i+1][j] == 0)
+                {
+                    cout << "NO" << endl;
+                    return 0;
+                }
+            }
         }
     }
-    if(stag==1 && count1 ==0 && count2 ==0)
+    
+    for(int i=0; i<1; i++)
     {
-        cout << (t-loc) << endl;
+        for(int j=0; j<m; j++)
+        {
+            if(mat[i][j]==1)
+            {
+                if(mat[i][j+1] ==0 && mat[i+1][j] == 0)
+                {
+                    cout << "NO" << endl;
+                    return 0;
+                }
+            }
+        }
     }
-    else if(stag==0 && count1 ==1 && count2 ==0)
+
+    i = 
+    for(int j=0; j<m; j++)
     {
-        cout << (t-1) << endl;
+        if(mat[i][j]==1)
+        {
+            if(mat[i][j+1] ==0 && mat[i+1][j] == 0)
+            {
+                cout << "NO" << endl;
+                return 0;
+            }
+        }
     }
-    else if(stag==0 && count1 ==0 && count2 ==1)
-    {
-        cout << "1" << endl;
-    }
-    else
-    {
-        cout << "-1" << endl;
-    }
+
 }

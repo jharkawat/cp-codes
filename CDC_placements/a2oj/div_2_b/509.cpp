@@ -55,61 +55,41 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);    
-    ll t;
-    cin >> t;
-    vector<int> arr(t);
-    for(int i=0; i<t; i++)
+    ll n,k;
+    cin >> n >> k;
+    vector<ll> pebb(n);
+    vector<ll> temp;
+    for(ll i=0; i<n; i++)
     {
-        cin >> arr[i];
+        cin >> pebb[i];
+        temp.push_back(pebb[i]);
     }
-    if(t<3)
+    sort(temp.begin(), temp.end());
+    if(temp[n-1]>k+temp[0])
     {
-        if(arr[0]>arr[1])
-        {
-            cout << "1" << endl;
-            return 0;
-        }
-        else
-        {
-            cout << "0" << endl;
-            return 0;
-        }
-    }
-    int count1=0; 
-    int count2=0;
-    if(((arr[0]>=arr[t-1]) && (arr[0]>=arr[1])) || ((arr[0]<=arr[t-1]) && (arr[0]<=arr[1])))
-    {
-        count1++;
-    }
-    if(((arr[t-1]>=arr[t-2]) && (arr[t-1]>=arr[0])) || ((arr[t-1]<=arr[t-2]) && (arr[t-1]<=arr[0])))
-    {
-        count2++;
-    }
-    int stag = 0;
-    //debug(count);
-    int loc = -1;
-    for(int i=1; i<t-1; i++)
-    {
-        if(((arr[i]>=arr[i-1]) && (arr[i]>=arr[i+1])) || ((arr[i]<=arr[i-1]) && (arr[i]<=arr[i+1])))
-        {
-            stag++;
-            loc = i;
-        }
-    }
-    if(stag==1 && count1 ==0 && count2 ==0)
-    {
-        cout << (t-loc) << endl;
-    }
-    else if(stag==0 && count1 ==1 && count2 ==0)
-    {
-        cout << (t-1) << endl;
-    }
-    else if(stag==0 && count1 ==0 && count2 ==1)
-    {
-        cout << "1" << endl;
+        cout << "NO" << endl;
     }
     else
     {
-        cout << "-1" << endl;
+        cout << "YES" << endl;
+        for(int i=0; i<n; i++)
+        {
+            ll p = 0;
+            while(p!=pebb[i])
+            {
+                if(p<temp[0])
+                {
+                    ll ans = p%k +1;
+                    cout << ans << " " ;
+                }
+                else 
+                {
+                    ll ans = (p-temp[0])%k +1;
+                    cout << ans << " " ;                    
+                }
+                p++;
+            }
+            cout << endl;
+        }
     }
 }
