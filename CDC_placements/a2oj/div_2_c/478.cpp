@@ -36,7 +36,6 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #define ForI(_i , a , N) for(int _i = a ;_i < N ; _i ++)
 #define ForIR(_i , a , N) for(int _i = N ;_i > a ; _i --)
 #define INF (2139062143)
-#define N (1000000007)
 
 typedef vector< int > vi;
 typedef vector< vi > vvi;
@@ -56,10 +55,93 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);    
-    ll t;
-    cin >> t;
-    while(t--)
+    ll r,g,b;
+    cin >> r >> g >> b;
+    ll count; 
+    ll min1, min2, min3;
+    if(r>=g)
     {
+        if(b>=r)
+        {
+            min1=g;
+            min2=r;
+            min3=b;
+        }
+        else
+        {
+            if(b>=g)
+            {
+                min1=g;
+                min2=b;
+                min3=r;
+            }
+            else
+            {
+                min1=b;
+                min2=g;
+                min3=r;
+            }
+        }
+    }
+    else
+    {
+        if(b>=g)
+        {
+            min1=r;
+            min2=g;
+            min3=b;
+        }
+        else
+        {
+            if(b>=r)
+            {
+                min1=r;
+                min2=b;
+                min3=g;
+            }
+            else
+            {
+                min1=b;
+                min2=r;
+                min3=g;
+            }
+        }
 
+    }
+    // debug(min1);
+    // debug(min2);
+    // debug(min3);
+    if(min3>=min1+min2 && min1 >0)
+    {
+        ll ans = min1+min2;
+        cout << ans*2/3 << endl;
+        return 0;
+    }
+    if(min2 ==0 && min1 ==0)
+    {
+        cout << "0" << endl;
+        return 0;
+    }
+    else
+    {
+        count = min1;
+        min2-=min1;
+        min3-=min1;
+        count += (min2/3)*2;
+        ll a = min3-min2; 
+        //debug(a);
+        if(a>=4 && (min2%3)==2)
+        {
+            count += 2;
+        }
+        else if(a>=4 && (min2%3)==1)
+        {
+            count += 1;
+        }
+        else if(a<=3 && (min2%3)!=0 && a>0)
+        {
+            count +=1;
+        }
+        cout << count << endl;
     }
 }

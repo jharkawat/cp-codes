@@ -36,7 +36,6 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #define ForI(_i , a , N) for(int _i = a ;_i < N ; _i ++)
 #define ForIR(_i , a , N) for(int _i = N ;_i > a ; _i --)
 #define INF (2139062143)
-#define N (1000000007)
 
 typedef vector< int > vi;
 typedef vector< vi > vvi;
@@ -52,14 +51,62 @@ typedef pair< long long int ,long long int > iil;
 #define ff first
 #define ss second
 
+bool ispalindrome(string str)
+{
+    ll siz = str.length();
+    ll j= siz-1;
+    for(ll i=0; i<siz/2; i++)
+    {
+        j=j-i;
+        if(str[i]!=str[j])
+        {
+            return false;
+        }
+    }    
+    return true;
+}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);    
-    ll t;
-    cin >> t;
-    while(t--)
+    ll n,p;
+    cin >> n >> p;
+    p--;
+    string str;
+    cin >> str;
+    if(p>=n/2)
     {
-
+        str.reserve();
+        p = n-p-1;
+    }    
+    ll mins, maxs;
+    mins = p;
+    maxs = p;
+    ll count = 0; 
+    ll j = n-1;
+    for(ll i=0; i<n/2; i++)
+    {
+        if(str[i]!=str[j-i])
+        {
+            mins = min(mins,i);
+            maxs = max(maxs,i);
+            ll dist = abs(str[i]-str[j-i]);
+            if(dist>13)
+            {
+                dist = 26-dist;
+            }
+            count += dist;
+        }
     }
+    //debug(count);
+    if((maxs-p)<(p-mins))
+    {
+        count += 2*(maxs-p) + (p-mins);
+    }
+    else
+    {
+        count += 2*(p-mins) + (maxs-p); 
+    }
+    cout << count << endl;
 }

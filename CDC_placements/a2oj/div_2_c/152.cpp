@@ -54,12 +54,26 @@ typedef pair< long long int ,long long int > iil;
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);    
-    ll t;
-    cin >> t;
-    while(t--)
+    ll n,m;
+    cin >> n >> m;
+    vector<string> names(n);
+    for(int i=0; i<n; i++)
     {
-
+        cin >> names[i];
     }
+    ll ans=1;
+    for(int i=0; i<m; i++)
+    {
+        map<char,int> letter;
+        for(int j=0;j<n; j++)
+        {
+            string str = names[j];
+            char str1 = str[i];
+            letter[str1]++;
+        }
+        //cout << letter.size() << endl;
+        ans = (ans*letter.size())%N;
+    }
+    cout << ans << endl;
+
 }

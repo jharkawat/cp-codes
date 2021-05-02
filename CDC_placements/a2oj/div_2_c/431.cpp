@@ -52,14 +52,46 @@ typedef pair< long long int ,long long int > iil;
 #define ff first
 #define ss second
 
+ll ans=0;
+
+void cal(ll n, ll k, ll d, ll sum, bool flag)
+{
+    if(sum == n && flag)
+    {
+        ans++;
+        return;
+    }
+    else if(sum >= n)
+    {
+        return;
+    }
+    else
+    {
+        for(ll i=1; i<=k; i++)
+        {
+            if(i>=d)
+            {
+                flag = true;
+                cal(n,k,d,sum+i,flag);
+            }
+            else
+            {
+                cal(n,k,d,sum+i,flag);
+            }
+        }
+    }
+} 
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);    
-    ll t;
-    cin >> t;
-    while(t--)
-    {
+    ll n,k,d;
+    cin >> n >> k >> d;
+    bool flag = false;
+    cal(n,k,d,0,flag);
+    ans = ans%N;
+    cout << ans << endl;
 
-    }
+
 }

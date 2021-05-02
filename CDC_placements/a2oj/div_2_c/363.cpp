@@ -36,7 +36,6 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #define ForI(_i , a , N) for(int _i = a ;_i < N ; _i ++)
 #define ForIR(_i , a , N) for(int _i = N ;_i > a ; _i --)
 #define INF (2139062143)
-#define N (1000000007)
 
 typedef vector< int > vi;
 typedef vector< vi > vvi;
@@ -56,10 +55,26 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);    
-    ll t;
-    cin >> t;
-    while(t--)
+    string str;
+    cin >> str;
+    for(ll i=2 ; i<str.length(); i++)
     {
-
+        if((str[i]==str[i-1]) && (str[i]==str[i-2]))
+        {
+            str.erase(i,1);
+            i--;
+        }
     }
+    bool flag = false;
+    for(ll i=3 ; i<str.length(); i++)
+    {
+        if(str[i-3] == str[i-2])
+        {
+            if(str[i]==str[i-1])
+            {
+                str.erase(i,1);
+            }
+        }
+    }
+    cout << str << endl;
 }

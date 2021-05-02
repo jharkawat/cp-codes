@@ -36,7 +36,6 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #define ForI(_i , a , N) for(int _i = a ;_i < N ; _i ++)
 #define ForIR(_i , a , N) for(int _i = N ;_i > a ; _i --)
 #define INF (2139062143)
-#define N (1000000007)
 
 typedef vector< int > vi;
 typedef vector< vi > vvi;
@@ -56,10 +55,36 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);    
-    ll t;
-    cin >> t;
-    while(t--)
+    ll n;
+    cin >> n;
+    vector<pair<ll,ll>> date;
+    for(int i=0; i<n; i++)
     {
-
+        ll p,q;
+        cin >> p >> q;
+        date.push_back(make_pair(p,q));
     }
+    sort(date.begin(), date.end());
+    ll prev=0; 
+    int flag = 1;
+    for(auto &it : date)
+    {   
+        if(flag)
+        {
+            prev = it.second;
+            flag = 0;
+        }
+        else if(prev != it.first && prev != it.second)
+        {
+            if(prev>it.second)
+            {
+                prev = it.first;
+            }
+            else
+            {
+                prev = it.second;
+            }
+        }
+    }
+    cout << prev << endl;
 }

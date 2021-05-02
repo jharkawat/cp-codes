@@ -36,7 +36,6 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #define ForI(_i , a , N) for(int _i = a ;_i < N ; _i ++)
 #define ForIR(_i , a , N) for(int _i = N ;_i > a ; _i --)
 #define INF (2139062143)
-#define N (1000000007)
 
 typedef vector< int > vi;
 typedef vector< vi > vvi;
@@ -56,10 +55,67 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);    
-    ll t;
-    cin >> t;
-    while(t--)
+    ll n,m;
+    cin >> n >> m;
+    string ans;
+    if((m>2*n+2) || (n>m+1))
     {
+        cout << "-1" << endl;
+    }
+    else
+    {
+        if(m==n)
+        {
+            for(int i=0; i<n; i++)
+            {
+                ans.append("1");
+                ans.append("0");
+            }
+        }
+        else if(n>m)
+        {
+            ans.append("0");
+            for(int i=0; i<n-1; i++)
+            {
+                ans.append("1");
+                ans.append("0");
+            }
 
+        }
+        else
+        {
+            while(n!=0)
+            {
+                if(m>n)
+                {
+                    ans.append("1");
+                    ans.append("1");
+                    if(n!=0)
+                    {
+                        ans.append("0");
+                    }
+                    m-=2;
+                    n--;
+                }
+                else
+                {
+                    ans.append("1");
+                    ans.append("0");
+                    m--;
+                    n--;
+
+                }
+            }
+            if(m==2)
+            {
+                ans.append("1");
+                ans.append("1");
+            }
+            else if(m==1)
+            {
+                ans.append("1");
+            }
+        }
+        cout << ans << endl;
     }
 }

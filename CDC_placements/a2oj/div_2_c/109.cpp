@@ -56,10 +56,45 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);    
-    ll t;
-    cin >> t;
-    while(t--)
+    ll n;
+    cin >> n;
+    ll i=0;
+    ll sum = INF;
+    ll j = -1;
+    ll p,q;
+    while(7*i<=n)
     {
-
+        if((n-7*i)%4==0)
+        {
+            j = (n-7*i)/4;
+            if(sum>(i+j))
+            {
+                sum = i+j;
+                p = i;
+                q = j;
+            }
+        }
+        i++;
     }
+    if(n==7)
+    {
+        cout << "7" << endl;
+    }
+    else if(j == -1 )
+    {
+        cout << j << endl;
+    }
+    else
+    {
+        for(int k=0; k<q; k++)
+        {
+            cout << "4" ;
+        }
+        for(int k=0; k<p; k++)
+        {
+            cout << "7";
+        }
+        cout << endl;
+    }
+
 }

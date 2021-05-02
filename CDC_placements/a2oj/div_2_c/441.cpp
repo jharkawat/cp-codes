@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 
-using namespace std;
+using namespace std;s
 
 void __print(int x) {cerr << x;}
 void __print(long x) {cerr << x;}
@@ -36,7 +36,6 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #define ForI(_i , a , N) for(int _i = a ;_i < N ; _i ++)
 #define ForIR(_i , a , N) for(int _i = N ;_i > a ; _i --)
 #define INF (2139062143)
-#define N (1000000007)
 
 typedef vector< int > vi;
 typedef vector< vi > vvi;
@@ -56,10 +55,79 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);    
-    ll t;
-    cin >> t;
-    while(t--)
+    ll n,m,k;
+    cin >> n >> m >> k;
+    ll fin = n*m - 2*(k-1);
+    bool flag = true; 
+    bool tag = true;
+    bool mag = true;
+    for(ll i=1; i<=n; i++)
     {
+        if(flag)
+        {
+            for(int j=1; j<=m; j++)
+            {
+                if(k>1)
+                {
+                    if(tag)
+                    {
+                        cout << endl;
+                        cout << "2 " ;
+                        tag = false;
+                    }
+                    else
+                    {
+                        tag = true;
+                        k--;
+                    }
+                    cout << i << " " << j << " ";
+                }
+                else
+                {
+                    if(mag)
+                    {
+                        cout << endl;
+                        cout << fin << " " ;
+                        mag = false;
+                    }
+                    cout << i << " " << j << " ";
+                    
+                }
+            }
+            flag = false;
+        }
+        else
+        {
+            for(int j=m; j>0; j--)
+            {
+                if(k>1)
+                {
+                    if(tag)
+                    {
+                        cout << endl;
+                        cout << "2 " ;
+                        tag = false;
+                    }
+                    else
+                    {
+                        tag = true;
+                        k--;
+                    }
+                    cout << i << " " << j << " ";
+                }
+                else
+                {
+                    if(mag)
+                    {
+                        cout << endl;
+                        cout << fin << " " ;
+                        mag = false;
+                    }
+                    cout << i << " " << j << " ";
+                }
+            }
+            flag = true;
 
+        }
     }
 }
