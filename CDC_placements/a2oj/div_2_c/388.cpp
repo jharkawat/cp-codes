@@ -36,6 +36,7 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #define ForI(_i , a , N) for(int _i = a ;_i < N ; _i ++)
 #define ForIR(_i , a , N) for(int _i = N ;_i > a ; _i --)
 #define INF (2139062143)
+#define N (1000000007)
 
 typedef vector< int > vi;
 typedef vector< vi > vvi;
@@ -55,36 +56,11 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);    
-    string str;
-    cin >> str; 
-    ll a,b;
-    cin >> a >> b;
-    if(str[0] == '0')
+    ll n;
+    cin >> n;
+    vector<pair<ll,ll>> strength;
+    for(int i=0; i<n; i++)
     {
-        cout << "NO" << endl;
-        return 0;
-    }
-    string first, second;
-    ll parta, partb;
-    for(int i=0; i<str.length()-1; i++)
-    {
-        first = str.substr(0,i+1);
-        second = str.substr(i+1,str.length()-i-1);
-        // cout << first << " " << second << endl;
-        if(second[0]=='0')
-        {`
-            continue;
-        }
-        else
-        {
-            parta = stoll(first, nullptr, 10);
-            partb = stoll(second, nullptr, 10);
-            if((parta%a==0) && (partb%b==0))
-            {
-                cout << "yes" << endl;
-                cout << first << " " << second << endl;
-                return 0;
-            }
-        }
+ 
     }
 }
