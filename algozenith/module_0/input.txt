@@ -1,0 +1,9 @@
+1
+7
+push 3
+push 5
+pop
+front
+push 7
+pop
+pop
