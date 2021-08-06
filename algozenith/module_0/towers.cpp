@@ -11,7 +11,30 @@ conditions
 
 void solve()
 {
-    
+    ll n; cin >> n;
+    map<ll,ll> mpp;
+    ll maxi = 0;
+    ll ans = 0;
+    for(ll i=0; i<n; i++)
+    {
+        ll p;
+        cin >> p;
+        if(maxi<=p)
+        {
+            maxi = p;
+            ans++;
+        }
+        mpp[p]++;
+    }
+// O(nlogn)
+
+    for(auto x:mpp)
+    {
+        ans = max(ans,x.second);
+    }
+// O(|mpp|)    
+
+    cout << ans << "\n";
 }
 
 signed main()

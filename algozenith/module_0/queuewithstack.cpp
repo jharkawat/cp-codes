@@ -13,7 +13,6 @@ void solve()
 {
     ll n; cin >> n;
     stack<int> st1, st2;
-    bool flag = true;
     ll first;
     while(n--)
     {
@@ -22,10 +21,10 @@ void solve()
         if(query == "push")
         {
             ll x; cin >> x;
-            if(flag)
+            if(st1.empty())
             {
+                // cout << "yes " << x << "\n"; 
                 first = x;
-                flag = false;
             }
             st1.push(x);
         }

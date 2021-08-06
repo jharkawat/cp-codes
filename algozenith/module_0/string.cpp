@@ -46,7 +46,7 @@ struct manipulation{
 void solve()
 {
     string s,query;
-    getline(cin,s);
+    cin >> s;
     manipulation strng;
     strng.insert(s);
     ll q; cin >> q;

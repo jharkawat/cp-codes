@@ -8,12 +8,6 @@ using ll = long long;
 conditions
 */
 
-
-void solve()
-{
-    
-}
-
 signed main()
 {
     IOS
@@ -24,8 +18,20 @@ signed main()
     #endif
 
     ll t; cin >> t; 
-    while(t--)
+    vector<int> vec;
+    for(int i=1; i<=t; i++)
     {
-        solve();
+        vec.push_back(i);
+        cout << i << " ";
+    }
+    cout << "\n";
+    while(next_permutation(vec.begin(),vec.end()))
+    {
+        for(int i=0; i<t; i++)
+        {
+            cout << vec[i] << " ";
+        }
+        cout << "\n";
+
     }
 }
