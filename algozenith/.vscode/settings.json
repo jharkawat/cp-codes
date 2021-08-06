@@ -3,7 +3,9 @@
         "ostream": "cpp",
         "iostream": "cpp",
         "iosfwd": "cpp",
-        "streambuf": "cpp"
+        "streambuf": "cpp",
+        "typeindex": "cpp",
+        "typeinfo": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
