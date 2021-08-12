@@ -8,29 +8,32 @@ using ll = long long;
 conditions
 */
 
-ll number_to_find(ll x)
-{
-    ll ans = 1;
-    while(ans<x)
-    {
-        ans *= 2;
-    }
-    return (ans-x);
-}
 
 void solve()
 {
-    ll n; cin >> n;
-    vector<ll> arr(n);
+    ll n,k; cin >> n >> k;
     map<ll,ll> mpp;
-    ll ans =0;
     for(ll i=0; i<n; i++)
     {
-        cin >> arr[i]
-        mpp[arr[i]].push_back(i);
+        ll p; cin >> p;
+        mpp[p]++;
     }
-    
-    cout << ans << endl;
+    ll ans = 0;
+    for(auto x: mpp)
+    {
+        if(k!=0)
+        {
+            if(mpp.find(x.first+k) != mpp.end())
+            {
+                ans += mpp[x.first+k]*mpp[x.first];
+            }
+        }
+        else
+        {
+            ans += mpp[x.first]*(mpp[x.first]-1)/2;
+        }
+    }
+    cout << ans << "\n";
 }
 
 signed main()

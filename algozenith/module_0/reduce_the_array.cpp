@@ -8,29 +8,27 @@ using ll = long long;
 conditions
 */
 
-ll number_to_find(ll x)
-{
-    ll ans = 1;
-    while(ans<x)
-    {
-        ans *= 2;
-    }
-    return (ans-x);
-}
 
 void solve()
 {
-    ll n; cin >> n;
-    vector<ll> arr(n);
-    map<ll,ll> mpp;
-    ll ans =0;
+    ll n; cin>> n;
+    multiset<ll> st;
     for(ll i=0; i<n; i++)
     {
-        cin >> arr[i]
-        mpp[arr[i]].push_back(i);
+        ll p; cin>> p;
+        st.insert(p);
     }
-    
-    cout << ans << endl;
+    ll ans = 0;
+    while(st.size()!=1)
+    {
+        auto it = st.begin();
+        auto it2 = it++;
+        ans += (*it + *it2);
+        st.insert(*it + *it2);
+        st.erase(it);
+        st.erase(it2);
+    }
+    cout << ans << "\n";
 }
 
 signed main()

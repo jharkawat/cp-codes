@@ -8,28 +8,28 @@ using ll = long long;
 conditions
 */
 
-ll number_to_find(ll x)
-{
-    ll ans = 1;
-    while(ans<x)
-    {
-        ans *= 2;
-    }
-    return (ans-x);
-}
 
 void solve()
 {
     ll n; cin >> n;
-    vector<ll> arr(n);
     map<ll,ll> mpp;
-    ll ans =0;
-    for(ll i=0; i<n; i++)
+    while(n--)
     {
-        cin >> arr[i]
-        mpp[arr[i]].push_back(i);
+        ll p; cin >> p;
+        mpp[p]++;
+    }    
+    ll ans = 0;
+    for(auto x:mpp)
+    {
+        if(x.first > x.second)
+        {
+            ans += x.second;
+        }
+        else if(x.first < x.second)
+        {
+            ans += x.second-x.first;
+        }
     }
-    
     cout << ans << endl;
 }
 

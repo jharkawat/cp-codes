@@ -8,29 +8,25 @@ using ll = long long;
 conditions
 */
 
-ll number_to_find(ll x)
-{
-    ll ans = 1;
-    while(ans<x)
-    {
-        ans *= 2;
-    }
-    return (ans-x);
-}
 
 void solve()
 {
-    ll n; cin >> n;
-    vector<ll> arr(n);
-    map<ll,ll> mpp;
-    ll ans =0;
-    for(ll i=0; i<n; i++)
+    ll n,k;
+    cin >> n >> k;
+    vector<ll> vec(n);
+    for(ll i=0; i< n; i++)
     {
-        cin >> arr[i]
-        mpp[arr[i]].push_back(i);
+        cin >> vec[i];
     }
-    
-    cout << ans << endl;
+    sort(vec.begin(), vec.end());
+    ll i=0, sum = 0;
+    while(k>=vec[i] && i<n)
+    {
+        sum++;
+        k -= vec[i];
+        i++;
+    }
+    cout << sum << endl;
 }
 
 signed main()
