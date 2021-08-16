@@ -43,13 +43,11 @@ void solve()
             }
         }
     }
-    
-
 }
 
 
 /*
-LOGIC 1: logic sahi hai lekin tle a rha hai 
+LOGIC 1: logic sahi hai lekin tle a rha haiasdfasgasdghadfgadfgdfg
 void solve()
 {
     ll query; cin >> query;
