@@ -26,11 +26,12 @@ void solve()
                 // cout << "yes " << x << "\n"; 
                 first = x;
             }
+
             st1.push(x);
         }
         else if(query == "pop")
         {
-            if(!st1.empty())
+            if(!st1.empty() && st2.empty())
             {
                 ll siz = (int)st1.size();
                 for(ll i=0; i<siz-1; i++)
@@ -40,24 +41,21 @@ void solve()
                 }
                 cout << st1.top() << endl;
                 st1.pop();
-                if(!st2.empty())
-                {
-                    ll siz2 = (int)st2.size();
-                    for(ll i=0; i<siz2; i++)
-                    {
-                        if(i==0)
-                        {
-                            first = st2.top();
-                        }
-                        st1.push(st2.top());
-                        st2.pop();
-                    }
-                }
+            }
+            else if(!st2.empty())
+            {
+                cout << st2.top() <<"\n";
+                st2.pop();
             }
         }
         else if(query == "front")
         {
+            if(st2.empty())
             cout << first << endl;
+            else
+            {
+                cout << st2.top() << "\n";
+            }
         }
         else 
         {
@@ -72,10 +70,10 @@ signed main()
     IOS
 
     #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("../input.txt", "r", stdin);
+    freopen("../output.txt", "w", stdout);
     #endif
-
+    
     ll t; cin >> t; 
     while(t--)
     {

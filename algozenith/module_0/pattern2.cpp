@@ -5,53 +5,30 @@ using ll = long long;
 #define IOS ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 
 void solve(){
-    ll n,m,p;
+    int n, m, p;
     cin >> n >> m >> p;
-    cout << endl;
-    for(int i=0; i<((n*(p+1))+1); i++)
-    {
-        if(i%m == 0)
-        {
-            for(int j=0; j<((m*(p+1))+1); j++)
-            {
-                cout << "*";
-            }
+    for (int i = 0; i < (p+1)*n+1; ++i) {
+        for (int j = 0; j < (p+1)*m + 1; ++j) {
+            if(i%(p+1) == 0 || j%(p+1) == 0) cout<<"*";
+            else if((i+j)%((p+1)*2)==0) cout<<"/";
+            else if((i-j)%((p+1)*2)==0) cout<<"\\";
+            else cout<<".";
         }
-        else
-        {
-            for(int j=0; j<((m*(p+1))+1); j++)
-            {
-
-                if(j%(2*m) == i%(2*m))
-                {
-                    cout << "\\" ;
-                }   
-                else if((i%(2*m)+j%(2*m)) == 2*m)
-                {
-                    cout << "/" ;
-                }
-                else if(j%m == 0)
-                {
-                    cout << "*" ;
-                }
-                else
-                {
-                    cout << "." ;
-                }
-
-            }
-        }
-        cout << endl;
+        cout<<"\n";
     }
-   
-
+    cout<<"\n";
 }
 // O(m*n)
-
-signed main(){
+signed main()
+{
     IOS
-    ll t;
-    cin >> t;                                                                                                               
+
+    #ifndef ONLINE_JUDGE
+    freopen("../input.txt", "r", stdin);
+    freopen("../output.txt", "w", stdout);
+    #endif
+    
+    ll t; cin >> t; 
     while(t--)
     {
         solve();
