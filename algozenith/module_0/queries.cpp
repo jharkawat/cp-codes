@@ -47,7 +47,7 @@ void solve()
 
 
 /*
-LOGIC 1: logic sahi hai lekin tle a rha haiasdfasgasdghadfgadfgdfg
+LOGIC 1: logic sahi hai lekin tle a rha ha
 void solve()
 {
     ll query; cin >> query;
