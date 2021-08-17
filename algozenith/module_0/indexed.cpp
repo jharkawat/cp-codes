@@ -12,11 +12,15 @@ findpos x - find the position (0-indexing) of the element with value x if it exi
  find the position that the element would have in the set
 */
 
+#include <ext/pb_ds/assoc_container.hpp> 
+using namespace __gnu_pbds; 
+typedef tree <int, null_type, less<int>, rb_tree_tag, 
+tree_order_statistics_node_update> ordered_set;
 
 void solve()
 {
     ll q; cin >> q;
-    set<ll> s;
+    ordered_set s;
     while(q--)
     {
         string str;
@@ -30,7 +34,7 @@ void solve()
             ll x; cin>>x;
             if(s.find(x) != s.end())
             {
-                s.erase(x);
+                s.erase(s.find(x));
             }
             // cout << "here 2" << endl;
         }
@@ -38,12 +42,7 @@ void solve()
             ll x; cin >> x;
             if(x<s.size())
             {
-                auto it = s.begin();
-                while(x--)
-                {
-                    it++;
-                }
-                cout << *it << "\n";
+                cout << *s.find_by_order(x) << "\n";
             }
             else
             {
@@ -53,23 +52,7 @@ void solve()
         }
         else if(str == "findpos"){
             ll x; cin >> x;
-            ll pos = 0;
-            if(!s.empty())
-            {
-                auto it = s.find(x);
-                if(it != s.end())
-                {
-                    pos = distance(s.begin(),s.find(x));
-                    cout << pos << "\n";
-                    // cout << "here 5" << endl;
-                }
-                else
-                {
-                    ll pos = distance(s.begin(),s.upper_bound(x));
-                    cout << pos << "\n";
-                }
-            }
-            // cout << "here 4" << endl;
+            cout << s.order_of_key(x) << "\n";
         }
     }
 }
@@ -79,8 +62,8 @@ signed main()
     IOS
 
     #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("../input.txt", "r", stdin);
+    freopen("../output.txt", "w", stdout);
     #endif
 
     ll t; cin >> t; 

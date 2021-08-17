@@ -1,2 +1,8 @@
 1
-(a*b)+c
+6
+add 4
+add 1
+add 6
+find 1
+findpos 7
+findpos 6

@@ -22,6 +22,7 @@ void generate(string s, int level, set<string> &ans)
             {
                 reverse(s.begin()+i, s.begin()+j);
                 generate(s,level+1,ans);
+                reverse(s.begin()+i, s.begin()+j);
             }
         }
     }
@@ -52,8 +53,8 @@ signed main()
     IOS
 
     #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("../input.txt", "r", stdin);
+    freopen("../output.txt", "w", stdout);
     #endif
 
     ll t; cin >> t; 

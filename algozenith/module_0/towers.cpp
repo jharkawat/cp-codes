@@ -12,29 +12,21 @@ conditions
 void solve()
 {
     ll n; cin >> n;
-    map<ll,ll> mpp;
-    ll maxi = 0;
-    ll ans = 0;
-    for(ll i=0; i<n; i++)
+    multiset<ll> towers;
+    while(n--)
     {
-        ll p;
-        cin >> p;
-        if(maxi<=p)
+        ll x; cin>> x;
+        if(towers.empty() || towers.upper_bound(x) == towers.end())
         {
-            maxi = p;
-            ans++;
+            towers.insert(x);
         }
-        mpp[p]++;
+        else
+        {
+            towers.erase(towers.upper_bound(x));
+            towers.insert(x);
+        }
     }
-// O(nlogn)
-
-    for(auto x:mpp)
-    {
-        ans = max(ans,x.second);
-    }
-// O(|mpp|)    
-
-    cout << ans << "\n";
+    cout << (ll)towers.size() << "\n";
 }
 
 signed main()
@@ -42,8 +34,8 @@ signed main()
     IOS
 
     #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("../input.txt", "r", stdin);
+    freopen("../output.txt", "w", stdout);
     #endif
 
     ll t; cin >> t; 
