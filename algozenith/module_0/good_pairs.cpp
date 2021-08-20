@@ -21,26 +21,28 @@ void solve()
     {
         cin >> vec2[i];
     }
-    multiset<ll> st;
+    vector<ll> st;
     
     for(ll i=0; i<n; i++)
     {
-        st.insert(vec1[i]-vec2[i]);
+        st.push_back(vec1[i]-vec2[i]);
     }
+    sort(st.begin(), st.end());
     ll ans = 0;
-    for(auto x:st)
+    int i=0;
+    for(i=0; i<n; i++)
     {
-        if(x<=0)
-        {
-            ans += distance(st.upper_bound(0-x),st.end());
-            st.erase(st.begin());
-        }
-        else
+        if(st[i]>0)
         {
             break;
         }
+        if(st[i]<=0)
+        {
+            // cout << st[i] << " " << ans <<  endl;
+            ans += st.end()-upper_bound(st.begin(),st.end(),(0-st[i]));
+        }
     }
-    ans += (st.size())*(st.size()-1)/2;
+    ans += (st.size()-i)*(st.size()-i-1)/2;
     cout << ans << "\n";
 
 }
@@ -50,8 +52,8 @@ signed main()
     IOS
 
     #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("../input.txt", "r", stdin);
+    freopen("../output.txt", "w", stdout);
     #endif
 
     ll t; cin >> t; 

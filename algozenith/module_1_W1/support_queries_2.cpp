@@ -11,7 +11,7 @@ conditions
 
 struct myprio{
     multiset<ll> hi,lo;
-    ll sum_hi=0;
+    ll sum=0;
     ll k;
     void init(ll k)
     {
@@ -19,65 +19,46 @@ struct myprio{
     }
     void insert(ll x)
     {
-        if(hi.size()<k)
+        hi.insert(x);
+        sum += x;
+        if((ll)hi.size()>k)
         {
-            hi.insert(x);
-            sum_hi += x;
+            ll temp = *(hi.begin());
+            lo.insert(temp);
+            sum -= temp;
+            hi.erase(hi.find(temp));
         }
-        else 
-        {
-            if(x>*hi.begin())
-            {
-                hi.insert(x);
-                sum_hi += x;
-            }
-            else
-            {
-                lo.insert(x);
-            }
-        }
+
+        return;
     }
     void remove(ll x)
     {
-        if(hi.find(x)!=hi.end())
+        if(hi.count(x))
         {
             hi.erase(hi.find(x));
-            sum_hi -= x;
+            sum -= x;
+            if((ll)hi.size()<k)
+            {
+                if((ll)lo.empty())
+                {
+                    return;
+                }
+                ll temp = *(lo.rbegin());
+                hi.insert(temp);
+                sum += temp;
+                lo.erase(lo.find(temp));
+            }
         }
-        else if(lo.find(x)!=lo.end())
+        else if(lo.count(x))
         {   
             lo.erase(lo.find(x));
         }
+        return;
     }
     ll get_sum()
     {
-        rebalance();
-        return sum_hi;
+        return sum;
     }
-    void rebalance()
-    {
-        if(hi.size()<k)
-        {
-            while(hi.size()<k && lo.size()!=0)
-            {
-                ll temp = *lo.rbegin();
-                hi.insert(temp);
-                sum_hi += temp;
-                lo.erase(prev(lo.end()));
-            }
-        }
-        else if(hi.size()>k)
-        {
-            while(hi.size()>k)
-            {
-                ll temp = *hi.begin();
-                lo.insert(temp);
-                sum_hi -= temp;
-                hi.erase(hi.begin());
-            }
-        }
-    }
-
 };
 
 void solve()
@@ -112,8 +93,8 @@ signed main()
     IOS
 
     #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("../input.txt", "r", stdin);
+    freopen("../output.txt", "w", stdout);
     #endif
 
     solve();

@@ -12,26 +12,20 @@ conditions
 void solve()
 {
     ll n; cin >> n;
-    priority_queue<ll, vector<ll>, greater<ll>> que;
-    ll b =0;
-    while(n--)
+    ll temp;
+    cin >> temp;
+    for(int i=1; i<n; i++)
     {
-        ll temp; cin >> temp;
-        if(temp>b)
-        {
-            que.push(temp);
-        }
-        while(!que.empty() && b>= que.top())
-        {
-            que.pop();
-        }
-        if(que.size()>b)
-        {
-            b++;
-        }
-        cout << b << " " ;
+        ll nos;
+        cin >> nos;
+        temp = __gcd(temp,nos);
     }
-    cout << "\n";
+    if(temp ==1)
+    {
+        cout << "No\n";
+    }
+    else cout << "Yes\n";
+
 }
 
 signed main()

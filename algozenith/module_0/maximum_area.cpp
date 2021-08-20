@@ -13,14 +13,14 @@ void solve()
 {
     ll h,w,n; 
     cin >> h >> w >> n;
-    set<ll> len, hei;
-    hei.insert(0);
+    set<ll> hori,verti;
+    hori.insert(0);
+    hori.insert(h);
+    verti.insert(0);
+    verti.insert(w);
+    multiset<ll> len, hei;
     hei.insert(h);
-    len.insert(0);
     len.insert(w);
-    multiset<ll> max_len, max_hei;
-    max_len.insert(w-0);
-    max_hei.insert(h-0);
     while(n--)
     {
         char x;
@@ -29,12 +29,25 @@ void solve()
         cin >> pos;
         if(x == 'H')
         {
-            hei.
+            hori.insert(pos);
+            auto it = hori.find(pos);
+            auto it1 = it, it2 =it;
+            it1--; it2++;
+            hei.erase(hei.find(*it2-*it1));
+            hei.insert(*it2-*it);
+            hei.insert(*it-*it1);
         }
         else
         {
-
+            verti.insert(pos);
+            auto it = verti.find(pos);
+            auto it1 = it, it2 =it;
+            it1--; it2++;
+            len.erase(len.find(*it2-*it1));
+            len.insert(*it2-*it);
+            len.insert(*it-*it1);
         }
+        cout << (*len.rbegin())*(*hei.rbegin()) << "\n";
     }
 
 }
@@ -44,8 +57,8 @@ signed main()
     IOS
 
     #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("../input.txt", "r", stdin);
+    freopen("../output.txt", "w", stdout);
     #endif
 
     ll t; cin >> t; 

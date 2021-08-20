@@ -12,24 +12,24 @@ conditions
 void solve()
 {
     ll n; cin >> n;
-    priority_queue<ll, vector<ll>, greater<ll>> que;
-    ll b =0;
-    while(n--)
+    stack<ll> st;
+    ll arr[n];
+    for(ll i=0; i<n; i++)
     {
-        ll temp; cin >> temp;
-        if(temp>b)
+        cin >> arr[i];
+        while(!st.empty() && arr[st.top()-1]>=arr[i])
         {
-            que.push(temp);
+            st.pop();
         }
-        while(!que.empty() && b>= que.top())
+        if(st.empty())
         {
-            que.pop();
+            cout << "0";
         }
-        if(que.size()>b)
+        else
         {
-            b++;
+            cout << st.top();
         }
-        cout << b << " " ;
+        st.push(i+1);
     }
     cout << "\n";
 }
