@@ -20,6 +20,10 @@ void solve()
         cin >> temp;
         elements[temp]++;
     }
+    // for(auto x: elements)
+    // {
+    //     cout << x.first << " " << x.second << "\n";
+    // }
     priority_queue<pair<ll,ll>> freq;
     for(auto x: elements)
     {
@@ -29,14 +33,15 @@ void solve()
     while(!freq.empty())
     {
         ll nos = freq.top().first;
-        while(nos > 1 && k != 0)
+        if(nos > 1 && k != 0)
         {
             ans += n-1;
             n -= 1;
             nos -= 1;
             k--;
+            freq.push({nos,freq.top().second});
         }
-        if(nos > 1)
+        else if(nos > 1)
         {
             ans += nos*(n-nos);      
             n -= nos;      

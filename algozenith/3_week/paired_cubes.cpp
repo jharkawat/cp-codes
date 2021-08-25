@@ -11,8 +11,7 @@ conditions
 
 void solve()
 {
-    string equ; 
-    getline(cin,equ);
+    
 }
 
 signed main()
@@ -25,8 +24,6 @@ signed main()
     #endif
     
     ll t; cin >> t; 
-    string temp;
-    getline(cin,temp);
     while(t--)
     {
         solve();
