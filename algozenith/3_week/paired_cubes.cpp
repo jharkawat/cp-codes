@@ -11,7 +11,6 @@ conditions
 
 void solve()
 {
-    
 }
 
 signed main()
@@ -23,9 +22,6 @@ signed main()
     freopen("../output.txt", "w", stdout);
     #endif
     
-    ll t; cin >> t; 
-    while(t--)
-    {
-        solve();
-    }
+    solve();
+  
 }
