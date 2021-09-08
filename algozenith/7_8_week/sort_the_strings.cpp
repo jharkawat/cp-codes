@@ -10,6 +10,7 @@ conditions
 ll n;
 ll arr[100100];
 string lists[100100];
+string rev[100100];
 ll dp[100100][2];
 
 ll rec(ll level, ll pos)
@@ -29,7 +30,34 @@ ll rec(ll level, ll pos)
     }
 
     // logic
-    ll ans = -1;
+    ll ans = 1e15;
+    {
+        if(pos == 0)
+        {
+            if(lists[level]>lists[level-1])
+            {
+                ans = min(ans,rec(level+1,0));
+            }
+            if(rev[level]>lists[level-1])
+            {
+                ans = min(ans,rec(level+1,1)+arr[level]);
+            }
+        }
+        else if(pos == 1)
+        {
+            if(lists[level]>rev[level-1])
+            {
+                ans = min(ans,rec(level+1,0));
+            }
+            if(rev[level]>rev[level-1])
+            {
+                ans = min(ans,rec(level+1,1)+arr[level]);
+            }
+        }
+    }
+
+    // save and return 
+    return dp[level][pos] = ans;
 }
 
 
@@ -42,10 +70,21 @@ void solve()
     }    
     for(ll i=0;i<n; i++)
     {
-        cin >> lists[i];
+        string temp;
+        cin >> temp;
+        lists[i] = temp;
+        reverse(temp.begin(),temp.end());
+        rev[i]= temp;
     }    
     memset(dp,-1,sizeof(dp));
-    cout << min(rec(0,0),arr[0]+rec(0,1)) << '\n';
+    if(min(rec(1,0),arr[0]+rec(1,1))>=1e15)
+    {
+        cout << "-1" << '\n';
+    }
+    else
+    {
+        cout << min(rec(1,0),arr[0]+rec(1,1)) << '\n';
+    }
 }
 
 signed main()
