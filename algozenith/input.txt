@@ -1,15 +1,2 @@
-3
-3
-2 6 7
-aca
-aad
-fba
-3
-5 1 1
-pbc
-cbe
-qbf
-2
-4 5
-baa
-aaa
+1
+7

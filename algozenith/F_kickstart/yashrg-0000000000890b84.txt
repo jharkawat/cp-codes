@@ -1,0 +1,110 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+typedef vector< int > vi;
+typedef vector< vi > vvi;
+typedef pair< int,int > ii;
+ 
+#define pb push_back
+#define all(c) (c).begin(),(c).end()
+#define tr(c,i) for( auto i = (c).begin(); i != (c).end(); i++)
+ 
+#define edl '\n'
+#define ll long long 
+#define ff first
+#define ss second
+ 
+#define forn(i,n) for ( int i=0 ; i<n ; i++ )
+#define forni(i,j,n) for ( int i=j ; i<n ; i++ )
+ 
+#define GCP cout << "Case #" << nw++ << ": ";
+#define filecode freopen("in.txt","r",stdin); freopen("out.txt","w",stdout);
+#define IOFAST ios::sync_with_stdio(false);cin.tie(0); cout.tie(0);
+#define setPrecision(n) cout << std::setprecision(n) << std::fixed;
+#define setv(ar, val) memset(ar, val, sizeof(ar));
+ 
+#define MOD 1000000007
+#define PI 3.14159265
+#define INF 1e18
+
+ 
+bool comp ( ii a, ii b ){ return (a.ff==b.ff)?a.ss<b.ss:a.ff<b.ff; }
+ll modInverse(ll a) { ll m = MOD;ll y = 0, x = 1;while (a > 1) {ll q = a / m;ll t = m;m = a % m, a = t;t = y;y = x - q * y;x = t;}if (x < 0) x += MOD;return x; }
+ll binpow ( ll a, ll p, ll mod ){ if ( p==0 ) return 1; ll ret = binpow(a,p/2, mod); ret *= ret;ret %= mod; if ( p%2 ){ret *= a;ret %= mod;} return ret; }
+bool com( ii a, ii b){ return a.ff>=b.ff; }
+
+
+void solve(int tc)
+{
+    cout << "Case #" << tc << ": ";
+    int d, n, k;
+    cin >> d >> n >> k;
+    vector<int> activate[d+1];
+    vector<int> deactivate[d+1];
+    for(int i=0;i<n;i++)
+    {
+        ll h, s, e;
+        cin >> h >> s >> e;
+        activate[s].push_back(h);
+        deactivate[e].push_back(h);
+    }
+    ll ans = 0, max_k=0;
+    multiset<int> mt, mxk;
+    forn(i, d+1)
+    {
+        for(auto v:activate[i]){
+            if(mxk.size() < k)
+            {
+                mxk.insert(v);
+                max_k+=v;
+            }
+            else if(mxk.size()==k)
+            {
+                ll temp = *(mxk.begin());
+                if(v > temp)
+                {
+                    mxk.erase(mxk.begin());
+                    max_k -= temp;
+                    mxk.insert(v);
+                    max_k += v;
+                    mt.insert(temp);
+                }
+                else
+                {
+                    mt.insert(v);
+                }
+            }
+        }
+        ans = max(ans, max_k);
+        for(auto v:deactivate[i]){
+            if(mt.find(v)!=mt.end())
+                mt.erase(mt.find(v));
+            else 
+            {
+                mxk.erase(mxk.find(v));
+                max_k -= v;
+                if(mt.size()>0)
+                {
+                    auto it = mt.end();
+                    it--;
+                    mxk.insert(*it);
+                    max_k += (*it);
+                    mt.erase(it);
+                }
+            }
+        }
+    }
+    ans = max(ans, max_k);
+    cout << ans << edl;
+}
+
+signed main() {
+    //freopen("input.txt", "r", stdin);
+    //freopen("output.txt", "w", stdout);
+    IOFAST;int t;
+    //sieve();
+    cin >> t;
+    forn(tc, t)
+        solve(tc+1);
+}

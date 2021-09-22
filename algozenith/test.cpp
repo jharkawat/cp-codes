@@ -1,35 +1,55 @@
 #include<bits/stdc++.h>
 using namespace std;
-using ll = long long;
 
-#define IOS ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+int n;
+vector<int> g[100100];
 
-/*
-conditions
-*/
+int sz[100100];
+int indp[100100];
+int outdp[100100];
 
-
-void solve()
-{
-    ll x = 2;
-    multiset<ll> mset;
-    mset.erase(mset.find(x));
+void indfs(int node,int par){
+indp[node] = 0;
+sz[node] = 1;
+for(auto v:g[node]){
+if(v!=par){
+indfs(v,node); 
+sz[node] += sz[v];
+indp[node] += indp[v]+sz[v];
+}
+}
 }
 
-signed main()
-{
-    IOS
-
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    #endif
-
-    solve();
-
-    // ll t; cin >> t; 
-    // while(t--)
-    // {
-    //     solve();
-    // }
+void outdfs(int node,int par){
+if(node==1){
+outdp[node] = 0;
+}else{
+outdp[node] = outdp[par]+indp[par] - (indp[node]+sz[node]) + (n-sz[node]);
 }
+for(auto v:g[node]){
+if(v!=par){
+outdfs(v,node);
+}
+}
+}
+
+void solve(){
+cin>>n;
+for(int i=0;i<n-1;i++){
+int a,b;
+cin>>a>>b;
+g[a].push_back(b);
+g[b].push_back(a);
+}
+indfs(1,0);
+outdfs(1,0);
+for(int i=1;i<=n;i++){
+cout<<indp[i]+outdp[i]<<" ";
+}
+} 
+
+signed main(){
+ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+//int _t;cin>>_t;while(_t--)
+solve();
+} 
