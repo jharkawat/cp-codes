@@ -11,40 +11,41 @@ using ii = pair<ll,ll>;
 /*
 conditions
 */
-
+bool comp(ii &a, ii &b)
+{
+    return (a.S-a.F) > (b.S-b.F);
+}
 
 void solve()
 {
     ll n; cin >> n;
-    set<ii> st;
-    vector<ll> rating;
+    vector<ii> st;
     for(ll i=0; i<n; i++)
     {
-        ll temp ; cin >> temp;
-        st.insert(MP(temp,i));
-        rating.push_back(temp);
-    }   
-    vector<ll> ans(n,1);
+        ll a,b;
+        cin >> a >> b;
+        st.push_back(MP(b,a));
+    }
+    sort(st.begin(), st.end(), comp);
+    ll ans=0;
     for(auto it = st.begin(); it != st.end(); it++)
     {
-        ii temp = *it;
-        ll rat = temp.F;
-        ll pos = temp.S;
-        if(pos>0 && rating[pos-1]<rat)
-        {
-            ans[pos] = max(ans[pos],ans[pos-1]+1);
-        }
-        else if(pos<n-1 && rating[pos+1]<rat)
-        {
-            ans[pos] = max(ans[pos],ans[pos+1]+1);
-        }
+        ans += it->F;
     }
-    ll sum = 0;
-    for(auto x: ans)
+    auto it = st.rbegin();
+    ans += it->S;
+    ans -= it->F;
+    ll temp = ans;
+    for(auto it = st.begin(); it != st.end(); it++)
     {
-        sum += x;
+        if(ans < it->S)
+        {
+            temp += it->S-ans;
+        }
+        ans -= it->F;
     }
-    cout << sum << endl;
+
+    cout << temp << '\n';
 }
 
 signed main()
