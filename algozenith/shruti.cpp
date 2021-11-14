@@ -1,58 +1,54 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#include <vector>
+#include <queue>
+#include <map>
+#include <unordered_set>
+#include <string>
+#include <cmath>
 using namespace std;
-using ll = long long;
+#define ll long long 
+#define mod 1000000007
+#define MAX 1000000
 
-#define IOS ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+vector<int> vec;
+int dp[1010][1010][505];
+int p;
 
-/*
-k = 3
-
-0 1 2 3 4 5 6 7 8 9
-1 2 4 5 7 8 9 10
-
-index = 0, 3, 7, 6  
-siz = 10 , 9 ,8, 7   
-conditions
-*/
-ll n,k; 
-vector<ll> pos; 
-
-ll kills(ll index, ll siz)
+int rec(int x, int y, int level)
 {
-    if(siz==1)
+    if(level == p)
     {
-        return index;
+        return 0;
     }
-    else
+
+    if(dp[x][y][level] != -1)
     {
-        return kills((index + (k-1))%n, siz--) + 1; 
+        return dp[x][y][level];
     }
+    // cout << level << endl;
+
+    int ans = 0; 
+    if(vec[level]<=x) ans = max(ans,1+rec(x-vec[level],y,level+1));
+    if(vec[level]<=y) ans = max(ans,1+rec(x,y-vec[level],level+1));
+    ans = max(ans,rec(x,y,level+1));
+
+    return dp[x][y][level] = ans;
 }
 
-void solve()
-{ 
-    cin >> n >> k; 
-    for(ll i=0; i<n; i++)
+int main(){
+    int x,y;
+    cin >> x >> y;
+    cin >> p;
+    for(int i=0; i<p; i++)
     {
-        pos.push_back(i);
-    }    
-    cout << kills(0,n)+1 << endl;
-}
-
-signed main()
-{
-    IOS
-
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    #endif
-
-    solve();
-
-    // ll t; cin >> t; 
-    // while(t--)
-    // {
-    //     solve();
-    // }
+        int k; cin >> k;
+        vec.push_back(k);
+    }
+    // x=1;
+    // y=1;
+    // vec = {1,1,3};
+    memset(dp,-1,sizeof(dp));
+    int ans = rec(x,y,0);
+    cout << ans << endl;
+    return 0;
 }
